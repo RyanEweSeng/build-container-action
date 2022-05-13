@@ -50,9 +50,12 @@ runs:
   - id: generate-cache-file
     shell: bash
     run: |
-      if [[ ${{ inputs.cache }} ]]; then
+      echo "input cache option is ${{inputs.cache}}"
+      if [[ ${{ inputs.cache }} == true ]]; then
+        echo "in if block"
         CACHE_FILE="/tmp/.buildx-cache"
       else
+        echo "in else block"
         CACHE_FILE="/dev/null"
       fi
       echo $CACHE_FILE
