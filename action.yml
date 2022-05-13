@@ -50,12 +50,12 @@ runs:
   - id: generate-cache-file
     shell: bash
     run: |
-      echo $${{ inputs.cache }}
       if [[ ${{ inputs.cache }} ]]; then
-        CACHE_FILE=/tmp/.buildx-cache
+        CACHE_FILE="/tmp/.buildx-cache"
       else
-        CACHE_FILE=/dev/null
+        CACHE_FILE="/dev/null"
       fi
+      echo $CACHE_FILE
       echo "::set-output name=cachefile::$CACHE_FILE"
 
   - name: Set up Docker Buildx
